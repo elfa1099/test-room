@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galaxy Portfolio</title>
+  
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      height: 200vh;
+      color: white;
+      font-family: 'Great Vibes', cursive;
+      background: linear-gradient(180deg, #120026, #2a0050, #4a0085);
+    }
+
+   @keyframes galaxy {
+  50% { filter: brightness(1.2) blur(2px); }
+  100% { filter: brightness(1) blur(0px); }
+}
+
+
+    /* Header */
+    header {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
+  box-sizing: border-box;
+  top: 0;
+  left: 0;
+  z-index: 9999; /* Supaya selalu di atas semua elemen */
+}
+
+
+    header button {
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid white;
+      color: white;
+      padding: 10px 18px;
+      margin-left: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    header button:hover {
+      background: white;
+      color: black;
+      padding: 8px 12px;
+    font-size: 14px;
+    }
+
+    /* Home section */
+    .home {
+      margin-top: 120px;
+      text-align: center;
+    }
+
+    .home a {
+      display: inline-block;
+      padding: 12px 20px;
+      background: white;
+      color: black;
+      border-radius: 6px;
+      text-decoration: none;
+      margin-top: 20px;
+      transition: 0.3s;
+    }
+
+    .home a:hover {
+      background: #ddd;
+    }
+
+    .loveAura {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 40px;
+      color: pink;
+      animation: lovePulse 2s infinite ease-in-out;
+    }
+
+    @keyframes lovePulse {
+      0% { transform: translate(-50%, -50%) scale(0.6); opacity: 0.2; }
+      50% { transform: translate(-50%, -50%) scale(1.3); opacity: 1; }
+      100% { transform: translate(-50%, -50%) scale(0.6); opacity: 0.2; }
+    }
+
+    .loveAuraBig {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 120px;
+      color: pink;
+      opacity: 0.9;
+      animation: lovePulseBig 3s infinite ease-in-out;
+      pointer-events: none;
+      text-shadow: 0 0 25px rgba(255, 100, 150, 0.9), 0 0 40px rgba(255, 60, 120, 0.8);
+    }
+
+    @keyframes lovePulseBig {
+      0% { transform: translate(-50%, -50%) scale(0.7); opacity: 0.4; }
+      50% { transform: translate(-50%, -50%) scale(1.4); opacity: 1; }
+      100% { transform: translate(-50%, -50%) scale(0.7); opacity: 0.4; }
+    }
+
+    @keyframes softGlow { 0% { text-shadow: 0 0 5px rgba(255,200,255,0.4);} 50% { text-shadow: 0 0 18px rgba(255,120,200,0.9);} 100% { text-shadow: 0 0 5px rgba(255,200,255,0.4);} }
+
+    /* Keyframe untuk animasi jatuh hati */
+    @keyframes fall {
+      0% { top: -20px; opacity: 1; }
+      100% { top: 100vh; opacity: 0; }
+    }
+
+    /* About section layout */
+    @media (max-width: 768px) {}
+    #about {
+      margin-top: 300px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+
+    #about .text-section {
+   flex: 1;
+      text-align: left;
+      margin-right: 20px;
+    }
+  
+
+    #about .image-section {
+   flex: 1;
+      text-align: center;
+      position: relative;
+    }
+
+    #about .image-section img {
+       width: 45%;             /* Menyesuaikan layar */
+  max-width: 400px;
+  height: auto;
+  margin: 0 5px;
+}
+
+    /* Container animasi 3D: di tengah, lebih besar lagi, di belakang */
+    #love3dContainer {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 300px;  /* Lebih besar dari 600px */
+      height: 300px; /* Lebih besar dari 600px */
+      z-index: -1; /* Di belakang elemen lain */
+      pointer-events: none; /* Agar tidak mengganggu klik */
+    }
+
+    #love3dContainer canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Video dengan shadow cantik */
+    #memVideo {
+   width: 90%;            /* Sesuaikan layar */
+  max-width: 600px;      /* Maksimum lebar */
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(255, 100, 150, 0.5);
+    }
+    .picture-card {
+  width: 90%;            /* Lebar menyesuaikan layar */
+  max-width: 220px; 
+  background: black;
+  border-radius: 12px;  
+  padding: 10px;
+  margin: 20px auto;
+  box-shadow: 0 0 20px rgba(255, 100, 150, 0.5);
+  text-align: center;
+}
+
+.picture-card img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.picture-card .label {
+  margin-top: 10px;
+  font-size: 18px;
+  color: pink;
+  font-weight: bold;
+}
+.picture-row {
+  display: flex;
+  justify-content: center;
+  gap: 20px;          /* jarak antar kotak */
+  flex-wrap: nowrap;  /* tidak turun ke bawah */
+  margin-top: 30px;
+}
+
+.picture-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 kolom */
+  gap: 25px;
+  justify-items: center;
+  margin-top: 30px;
+}
+
+.picture-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 kolom ke samping */
+  gap: 15px;
+  justify-items: center;
+  margin-top: 30px;
+  
+}
+
+.picture-card {
+  width: 220px;
+  background: black;
+  border-radius: 12px;
+  padding: 10px;
+  box-shadow: 0 0 20px rgba(255, 100, 150, 0.5);
+  text-align: center;
+}
+
+.picture-card img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+/* FULLSCREEN IMAGE VIEWER */
+#fullscreenViewer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.8);
+  display: none; /* awalnya tidak tampil */
+  justify-content: center;
+  align-items: center;
+  z-index: 999999;
+}
+
+#fullscreenViewer img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 12px;
+  box-shadow: 0 0 25px rgba(255, 100, 150, 0.7);
+}
+.photo {
+  width: 150px;      /* semua foto seragam */
+  height: 150px;     /* semua foto seragam */
+  object-fit: cover; /* agar foto rapi dan tidak gepeng */
+  border-radius: 10px;
+  cursor: pointer;
+}
+button:hover {
+  background: linear-gradient(45deg, #ff99ee, #ff66cc);
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(255,100,150,0.7);
+}
+  </style>
+</head>
+
+<body>
+  
+<audio id="audioMode1" src="https://b.top4top.io/m_36104h7y21.mp3" loop></audio>
+<audio id="audioMode2" src="https://i.top4top.io/m_36104i8l91.mp3" loop></audio>
+
+  <div id="fullscreenViewer" onclick="closeFullscreen()">
+
+</div>
+
+
+  <!-- ANIMASI LOVE 3D DI TENGAH WEB (lebih besar lagi) -->
+  <div id="love3dContainer"></div>
+
+  <header>
+    <nav style="display:flex; gap:15px;">
+      <button onclick="scrollToSection('about')">About Us</button>
+      <button onclick="scrollToSection('home')">Home</button>
+      <button onclick="scrollToSection('picture')">Picture</button>
+
+      <!-- Tombol Musik Terpisah -->
+<div id="musicButtons" style="position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 9999;">
+  <button onclick="playMusic('mode1')" style="padding: 10px 15px; border-radius: 8px; border: none; background: pink; color: white; cursor: pointer;">If you sad push me</button>
+  <button onclick="playMusic('mode2')" style="padding: 10px 15px; border-radius: 8px; border: none; background: purple; color: white; cursor: pointer;">If you happy push me</button>
+</div>
+
+  </header>
+
+  <section id="home" class="home">
+    <h1 style="font-size:50px; animation:softGlow 3s infinite ease-in-out;">Welcome Honey </h1>
+
+    <!-- VIDEO DI BAWAH -->
+    <div style="border-radius:12px; padding:10px; margin-top:30px;">
+      <div style="margin-top:30px;">
+        <video id="memVideo" src="https://l.top4top.io/m_3610l817u1.mp4" autoplay muted loop playsinline style="width:80%; max-width:600px; border-radius:12px;"></video>
+        <video id="memVideo" src="https://l.top4top.io/m_3609iv6wx1.mp4" autoplay muted loop playsinline style="width:80%; max-width:600px; border-radius:12px;"></video>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="text-section">
+      <h1>About Us</h1>
+      <p>一个美丽动人的女孩轻轻走过我的眼前，让我目眩神迷，仿佛时间在那一刻静止，也让我渴望拥有她的身影。她的容颜始终在我脑海里回荡，让我的睡眠变得不安宁，每一秒都显得漫长，当这份暗暗的思念静静流淌。这是爱情吗？还是仅仅的惊叹笼罩着我心灵的寂静？胸中涌动的爱意像盛开的花朵一般绽放，缓缓展开她的花瓣，散发出迷人的芳香，那美丽的色彩映入眼帘，点燃了心中炽热的火焰。啊，如果我能向她问候，轻轻触碰那柔软的手，将未能言说的语言刻在心间，在心灵的低语中回响。一个女孩，一次凝视，便将整个世界化作诗篇。</p>
+    </div>
+    <div class="image-section">
+      <!-- FOTO DI ATAS -->
+      <div style="width:100%; display:flex; justify-content:center; margin-top:30px; position:relative;">
+        <img src="https://d.top4top.io/p_3609agxfc1.jpeg" style="width:22%; border-radius:0; margin:0; padding:0;">
+        <img src="https://d.top4top.io/p_3609o0tu31.jpeg" style="width:22%; border-radius:0; margin:0; padding:0;">
+
+        <!-- LOVE BESAR MENUTUPI SETENGAH FOTO -->
+        <div class="loveAuraBig">❤</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="picture" style="margin-top:300px; text-align:center;">
+  <h2>Picture</h2>
+
+   <div class="picture-grid">
+
+    <div class="picture-card">
+    <img src="https://l.top4top.io/p_36098hnwm1.jpeg" onclick="openFullscreen(this.src)">
+    <div class="label">这是我的最爱之一 😍✨</div>
+  </div>
+
+<div class="picture-card">
+    <img src="https://g.top4top.io/p_3609a4r841.jpeg" onclick="openFullscreen(this.src)">
+    <div class="label">真是太可爱了 🥰💖</div>
+  </div>
+
+<div class="picture-card">
+    <img src="https://i.top4top.io/p_36097mbd91.jpeg" onclick="openFullscreen(this.src)">
+    <div class="label">哇，你好高啊！😲📏</div>
+  </div>
+
+<div class="picture-card">
+    <img src="https://b.top4top.io/p_3609rewbd1.jpeg" onclick="openFullscreen(this.src)">
+    <div class="label">这个也一点不输可爱呢 😆💖</div>
+  </div>
+
+<div class="picture-card">
+    <img src="https://a.top4top.io/p_36097o49v1.jpeg" onclick="openFullscreen(this.src)">
+    <div class="label">这个有点好笑呢，呵呵 😄😂</div>
+  </div>
+
+<div class="picture-card">
+    <img src="https://l.top4top.io/p_3609i19741.jpeg" onclick="openFullscreen(this.src)">
+  
+    <div class="comments-container" style="margin-top:10px;">
+    <input type="text" placeholder="Tulis komentar..." style="width: 90%; padding:5px;" id="commentInput1">
+   <button onclick="addComment('commentInput1', 'commentList1')" 
+        style="padding:5px 12px; border:none; border-radius:8px; background: linear-gradient(45deg, #ff66cc, #ff99ee); 
+               color:white; cursor:pointer; box-shadow: 0 4px 12px rgba(255,100,150,0.5); transition:0.3s;">
+  Kirim
+  </div>
+  </div>
+
+  <div class="picture-card">
+    <img src="https://e.top4top.io/p_3609bi9ca1.jpeg" onclick="openFullscreen(this.src)">
+
+     <div class="comments-container" style="margin-top:10px;">
+    <input type="text" placeholder="Tulis komentar..." style="width: 90%; padding:5px;" id="commentInput1">
+   <button onclick="addComment('commentInput1', 'commentList1')" 
+        style="padding:5px 12px; border:none; border-radius:8px; background: linear-gradient(45deg, #ff66cc, #ff99ee); 
+               color:white; cursor:pointer; box-shadow: 0 4px 12px rgba(255,100,150,0.5); transition:0.3s;">
+  Kirim
+  </div>
+  </div>
+
+  <div class="picture-card">
+    <img src="https://f.top4top.io/p_3609uknzc2.jpeg" onclick="openFullscreen(this.src)">
+     <div class="comments-container" style="margin-top:10px;">
+    <input type="text" placeholder="Tulis komentar..." style="width: 90%; padding:5px;" id="commentInput1">
+   <button onclick="addComment('commentInput1', 'commentList1')" 
+        style="padding:5px 12px; border:none; border-radius:8px; background: linear-gradient(45deg, #ff66cc, #ff99ee); 
+               color:white; cursor:pointer; box-shadow: 0 4px 12px rgba(255,100,150,0.5); transition:0.3s;">
+  Kirim
+  </div>
+  </div>
+
+  <div class="picture-card">
+    <img src="https://g.top4top.io/p_360982wz13.jpeg" onclick="openFullscreen(this.src)">
+     <div class="comments-container" style="margin-top:10px;">
+    <input type="text" placeholder="Tulis komentar..." style="width: 90%; padding:5px;" id="commentInput1">
+   <button onclick="addComment('commentInput1', 'commentList1')" 
+        style="padding:5px 12px; border:none; border-radius:8px; background: linear-gradient(45deg, #ff66cc, #ff99ee); 
+               color:white; cursor:pointer; box-shadow: 0 4px 12px rgba(255,100,150,0.5); transition:0.3s;">
+  Kirim
+  </div>
+  </div>
+
+   <div class="picture-card">
+    <img src="https://k.top4top.io/p_360938tkw1.jpeg" onclick="openFullscreen(this.src)">
+     <div class="comments-container" style="margin-top:10px;">
+    <input type="text" placeholder="Tulis komentar..." style="width: 90%; padding:5px;" id="commentInput1">
+   <button onclick="addComment('commentInput1', 'commentList1')" 
+        style="padding:5px 12px; border:none; border-radius:8px; background: linear-gradient(45deg, #ff66cc, #ff99ee); 
+               color:white; cursor:pointer; box-shadow: 0 4px 12px rgba(255,100,150,0.5); transition:0.3s;">
+  Kirim
+  </div>
+  </div>
+
+   <div class="picture-card">
+    <img src="https://a.top4top.io/p_3609kzr6q3.jpeg" onclick="openFullscreen(this.src)">
+    <div class="comments-container" style="margin-top:10px;">
+    <input type="text" placeholder="Tulis komentar..." style="width: 90%; padding:5px;" id="commentInput1">
+   <button onclick="addComment('commentInput1', 'commentList1')" 
+        style="padding:5px 12px; border:none; border-radius:8px; background: linear-gradient(45deg, #ff66cc, #ff99ee); 
+               color:white; cursor:pointer; box-shadow: 0 4px 12px rgba(255,100,150,0.5); transition:0.3s;">
+  Kirim
+  </div>
+  </div>
+
+   <div class="picture-card">
+    <img src="https://l.top4top.io/p_3609q9cnf2.jpeg" onclick="openFullscreen(this.src)">
+   <div class="comments-container" style="margin-top:10px;">
+    <input type="text" placeholder="Tulis komentar..." style="width: 90%; padding:5px;" id="commentInput1">
+   <button onclick="addComment('commentInput1', 'commentList1')" 
+        style="padding:5px 12px; border:none; border-radius:8px; background: linear-gradient(45deg, #ff66cc, #ff99ee); 
+               color:white; cursor:pointer; box-shadow: 0 4px 12px rgba(255,100,150,0.5); transition:0.3s;">
+  Kirim
+  </div>
+  </div>
+
+   <div class="picture-card">
+    <img src="https://f.top4top.io/p_3609uknzc2.jpeg" onclick="openFullscreen(this.src)">
+  <div class="comments-container" style="margin-top:10px;">
+    <input type="text" placeholder="Tulis komentar..." style="width: 90%; padding:5px;" id="commentInput1">
+   <button onclick="addComment('commentInput1', 'commentList1')" 
+        style="padding:5px 12px; border:none; border-radius:8px; background: linear-gradient(45deg, #ff66cc, #ff99ee); 
+               color:white; cursor:pointer; box-shadow: 0 4px 12px rgba(255,100,150,0.5); transition:0.3s;">
+  Kirim
+  </div>
+  </div>
+
+   <div class="picture-card">
+    <img src="https://b.top4top.io/p_3609zjddr4.jpeg" onclick="openFullscreen(this.src)">
+ <div class="comments-container" style="margin-top:10px;">
+    <input type="text" placeholder="Tulis komentar..." style="width: 90%; padding:5px;" id="commentInput1">
+   <button onclick="addComment('commentInput1', 'commentList1')" 
+        style="padding:5px 12px; border:none; border-radius:8px; background: linear-gradient(45deg, #ff66cc, #ff99ee); 
+               color:white; cursor:pointer; box-shadow: 0 4px 12px rgba(255,100,150,0.5); transition:0.3s;">
+  Kirim
+  </div>
+  </div>
+
+   <div class="picture-card">
+    <img src="https://c.top4top.io/p_3609ivx7s5.jpeg" onclick="openFullscreen(this.src)">
+ <div class="comments-container" style="margin-top:10px;">
+    <input type="text" placeholder="Tulis komentar..." style="width: 90%; padding:5px;" id="commentInput1">
+   <button onclick="addComment('commentInput1', 'commentList1')" 
+        style="padding:5px 12px; border:none; border-radius:8px; background: linear-gradient(45deg, #ff66cc, #ff99ee); 
+               color:white; cursor:pointer; box-shadow: 0 4px 12px rgba(255,100,150,0.5); transition:0.3s;">
+  Kirim
+  </div>
+  </div>
+
+  <div id="fullscreen" class="fullscreen" onclick="closeFullscreen()">
+  <img id="full-img">
+</div>
+</section>
+
+  <script>
+    heart.style.zIndex = "1";
+    // Smooth scrolling
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Placeholder video link (will be replaced by user)
+    document.getElementById('videoLink').href = "#";
+  </script>
+
+  <script>
+    // Falling love animation
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.innerHTML = '❤';
+      heart.style.position = 'fixed';
+      heart.style.top = '-20px';
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.fontSize = (15 + Math.random() * 20) + 'px';
+      heart.style.color = 'pink';
+      heart.style.opacity = Math.random();
+      heart.style.animation = 'fall 4s linear forwards';
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 4000);
+    }
+
+    setInterval(createHeart, 300);
+  </script>
+
+  <!-- ANIMASI LOVE 3D -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>
+    const container = document.getElementById("love3dContainer");
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+
+    renderer.setClearColor(0x000000, 0); // Transparan
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    container.appendChild(renderer.domElement);
+
+    const textGroup = new THREE.Group();
+    scene.add(textGroup);
+
+    const fontLoader = new THREE.FontLoader();
+    fontLoader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function (font) {
+      const textMaterial = new THREE.MeshBasicMaterial({ 
+        color: 0xff66cc, 
+        transparent: true, 
+        opacity: 0.3  // Opacity rendah agar di belakang
+      });
+
+      for (let i = 0; i < 360; i += 10) {
+        const angle = i * Math.PI / 180;
+        const x = 16 * Math.pow(Math.sin(angle), 3);
+        const y = 13 * Math.cos(angle) - 5 * Math.cos(2 * angle) - 2 * Math.cos(3 * angle) - Math.cos(4 * angle);
+
+        const textGeo = new THREE.TextGeometry("I Love You", {
+          font: font,
+          size: 0.6,
+          height: 0.05,
+        });
+
+        const textMesh = new THREE.Mesh(textGeo, textMaterial);
+        textMesh.position.set(x, y, 0);
+        textMesh.rotation.y = angle;
+        textGroup.add(textMesh);
+      }
+    });
+
+    camera.position.z = 35;
+
+    function animate() {
+      requestAnimationFrame(animate);
+      textGroup.rotation.y += 0.01;
+      textGroup.rotation.x += 0.003;
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    window.addEventListener('resize', () => {
+      renderer.setSize(container.clientWidth, container.clientHeight);
+      camera.aspect = container.clientWidth / container.clientHeight;
+      camera.updateProjectionMatrix();
+    });
+      function openFullscreen(src) {
+    document.getElementById("fullscreenImage").src = src;
+    document.getElementById("fullscreenViewer").style.display = "flex";
+  }
+
+  function closeFullscreen() {
+    document.getElementById("fullscreenViewer").style.display = "none";
+  }
+  
+  const light = new THREE.AmbientLight(0xffffff, 1);
+scene.add(light);
+  </script>
+
+  <script>
+  let currentAudio = null;
+
+  function playMusic(mode) {
+    // Hentikan musik sebelumnya
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
+    }
+
+    // Pilih musik sesuai mode
+    if (mode === 'mode1') {
+      currentAudio = document.getElementById('audioMode1');
+    } else if (mode === 'mode2') {
+      currentAudio = document.getElementById('audioMode2');
+    }
+
+    currentAudio.play();
+  }
+</script>
+
+<script>
+function addComment(inputId, listId) {
+  const input = document.getElementById(inputId);
+  const list = document.getElementById(listId);
+
+  if (input.value.trim() !== "") {
+    const comment = document.createElement("div");
+    comment.textContent = input.value;
+    comment.style.background = "rgba(255,255,255,0.1)";
+    comment.style.padding = "5px 8px";
+    comment.style.marginTop = "5px";
+    comment.style.borderRadius = "6px";
+    list.appendChild(comment);
+    input.value = "";
+  }
+}
+</script>
+
+</body>
+</html>
